@@ -36,19 +36,23 @@ async def getAttractions(
 		offset = data_count * page
 		cursor.execute(base_sql + "LIMIT %s OFFSET %s",(data_count, offset))
 		result = cursor.fetchall()
+		# 計算符合 table 總數量
+		cursor.execute("SELECT COUNT(*) FROM taipei_attractions")
+		table_len = cursor.fetchone()["COUNT(*)"]
 
 		# 處理 keyword：用來完全比對捷運站名稱、或模糊比對景點名稱的關鍵字，沒有給定則不做篩選
 		if keyword:
 			cursor.execute(base_sql + "WHERE mrt = %s OR name LIKE %s LIMIT %s OFFSET %s",(keyword, f"%{keyword}%", data_count, offset))
 			result = cursor.fetchall()
+			# 計算符合 keyword 條件的總數量
+			cursor.execute("SELECT COUNT(*) FROM taipei_attractions WHERE mrt = %s OR name LIKE %s", (keyword, f"%{keyword}%"))
+			table_len = cursor.fetchone()["COUNT(*)"]
 
 		# 解析 images JSON 格式
 		for row in result:
 			row["images"] = json.loads(row["images"])
 		
 		# 處理 nextPage
-		cursor.execute("SELECT COUNT(*) FROM taipei_attractions")
-		table_len = cursor.fetchone()["COUNT(*)"]
 		next_page = page + 1
 		if data_count * (page+1) >= table_len:
 			next_page = None
