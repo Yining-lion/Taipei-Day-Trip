@@ -91,6 +91,7 @@ async function loadAttractions(page, keyword="") {
 
 function handleSearch(){
     let keyword = $(".search_input").value.trim();
+    $(".search_input").value ="";
     if(!keyword) return; // 沒有關鍵字禁止觸發請求
     current_keyword = keyword;
     observer.disconnect(); // 先停止監聽，避免 observer 觸發額外請求
@@ -108,7 +109,10 @@ $(".search_input").addEventListener("keydown", (e) => {
 });
 
 $(".mrt_list").addEventListener("click", (e) => {
-    handleSearch();
+    let keyword = e.target.textContent;
+    current_keyword = keyword;
+    observer.disconnect(); // 先停止監聽，避免 observer 觸發額外請求
+    loadAttractions(0, keyword)
 })
 
 // IntersectionObserver(callback, options)
