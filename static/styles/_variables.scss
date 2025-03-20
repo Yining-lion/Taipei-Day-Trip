@@ -1,0 +1,33 @@
+// 顏色
+$primary-color-cyan-70: #448899;
+$primary-color-cyan-50: #66AABB;
+$primary-color-cyan-20: #AADDEE;
+$secondary-color-gray-70: #666666;
+$secondary-color-gray-50: #757575;
+$secondary-color-gray-20: #E8E8E8;
+$secondary-color-gray-10: #F8F8F8;
+$additional-color-blue-gray: #AABBCC;
+
+// 字型
+$font-family: "Noto Sans TC", sans-serif;
+
+// 文字大小
+$font-sizes: (
+    "h1": 28px,
+    "h2": 30px,
+    "h3": 24px,
+    "btn": 19px,
+    "content": 16px,
+    "list": 14px
+);
+
+// 行高
+$line-heights: (
+  "h1": 24px,
+  "h2": 34px,
+  "h3": 24px,
+  "btn": 16px,
+  "content": auto,
+  "body": 13.3px,
+  "list": auto
+);
