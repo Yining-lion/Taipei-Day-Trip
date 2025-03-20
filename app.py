@@ -37,6 +37,7 @@ async def getAttractions(
 		offset = data_count * page
 		cursor.execute(base_sql + "LIMIT %s OFFSET %s",(data_count, offset))
 		result = cursor.fetchall()
+
 		# 計算 table 總數量
 		cursor.execute("SELECT COUNT(*) FROM taipei_attractions")
 		table_len = cursor.fetchone()["COUNT(*)"]
