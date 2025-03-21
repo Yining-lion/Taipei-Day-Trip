@@ -1,5 +1,6 @@
 from fastapi import *
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 import mysql.connector.pooling
 from typing import Annotated
 import json
@@ -36,7 +37,8 @@ async def getAttractions(
 		offset = data_count * page
 		cursor.execute(base_sql + "LIMIT %s OFFSET %s",(data_count, offset))
 		result = cursor.fetchall()
-		# 計算符合 table 總數量
+
+		# 計算 table 總數量
 		cursor.execute("SELECT COUNT(*) FROM taipei_attractions")
 		table_len = cursor.fetchone()["COUNT(*)"]
 
@@ -104,6 +106,8 @@ async def getMrts(request: Request,):
 	finally:
 		cursor.close()
 		cnx.close()
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Static Pages (Never Modify Code in this Block)
 @app.get("/", include_in_schema=False)
