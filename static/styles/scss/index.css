@@ -371,9 +371,6 @@ html, body {
 }
 
 @media (max-width: 1200px) {
-  .navigation {
-    width: 95%;
-  }
   .hero_section_text {
     margin: 0 10px;
   }

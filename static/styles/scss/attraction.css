@@ -373,23 +373,27 @@ html, body {
 }
 
 @media (max-width: 1200px) {
-  .navigation {
-    width: 95%;
-  }
   .section {
     width: 95%;
   }
   .section .section_left {
     width: 40%;
   }
-  .subtitle {
+  .profile {
+    width: 95%;
+    margin: 0;
+  }
+  .profile .subtitle {
     line-height: 1.5 !important;
+  }
+  .profile .select_date p {
+    white-space: nowrap;
+  }
+  .deperate_line {
+    width: 100%;
   }
   .infors {
     width: 95%;
-  }
-  .select_date p {
-    white-space: nowrap;
   }
 }
 @media (max-width: 750px) {
@@ -407,9 +411,5 @@ html, body {
   }
   .section .section_left .attraction_images .attraction_img {
     border-radius: 0;
-  }
-  .section .profile {
-    width: 95%;
-    margin: 0;
   }
 }/*# sourceMappingURL=attraction.css.map */

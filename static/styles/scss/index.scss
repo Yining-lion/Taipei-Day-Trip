@@ -179,20 +179,20 @@ html, body{
 }
 
 @media (max-width: 1200px) {
-    .navigation {
-        width: 95%;
-    }
     .hero_section_text {
        margin: 0 10px;
     }
+
     .content {
         width: 95%;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+
         .attraction {
             margin: auto;
         }
     }
+
     .list_bar {
         width: 95%;
     }
