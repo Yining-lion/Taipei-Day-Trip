@@ -373,6 +373,9 @@ html, body {
 }
 
 @media (max-width: 1200px) {
+  .navigation {
+    width: 95%;
+  }
   .section {
     width: 95%;
   }
