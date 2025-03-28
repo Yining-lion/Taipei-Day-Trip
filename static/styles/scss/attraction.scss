@@ -195,19 +195,26 @@ html, body {
         }
     }
 
-    .subtitle {
-        line-height: 1.5 !important;
+    .profile {
+        width: 95%;
+        margin: 0;
+
+        .subtitle {
+            line-height: 1.5 !important;
+        }
+
+        .select_date{
+            p {
+                white-space: nowrap;
+            }
+        }
     }
 
     .infors {
         width: 95%;
     }
 
-    .select_date{
-        p {
-            white-space: nowrap;
-        }
-    }
+
 }
 
 @media (max-width: 750px) {
@@ -228,11 +235,6 @@ html, body {
                     border-radius: 0;
                 }
             }
-        }
-
-        .profile {
-            width: 95%;
-            margin: 0;
         }
     }
 }
