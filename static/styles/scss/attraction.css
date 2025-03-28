@@ -379,14 +379,10 @@ html, body {
   .section .section_left {
     width: 40%;
   }
-  .profile {
-    width: 95%;
-    margin: 0;
-  }
-  .profile .subtitle {
+  .section .profile .subtitle {
     line-height: 1.5 !important;
   }
-  .profile .select_date p {
+  .section .profile .select_date p {
     white-space: nowrap;
   }
   .deperate_line {
@@ -411,5 +407,9 @@ html, body {
   }
   .section .section_left .attraction_images .attraction_img {
     border-radius: 0;
+  }
+  .section .profile {
+    width: 95%;
+    margin: 0;
   }
 }/*# sourceMappingURL=attraction.css.map */

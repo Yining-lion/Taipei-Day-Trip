@@ -188,19 +188,17 @@ html, body {
         .section_left {
             width: 40%;
         }
-    }
 
-    .profile {
-        width: 95%;
-        margin: 0;
-
-        .subtitle {
-            line-height: 1.5 !important;
-        }
-
-        .select_date{
-            p {
-                white-space: nowrap;
+        .profile {
+    
+            .subtitle {
+                line-height: 1.5 !important;
+            }
+    
+            .select_date{
+                p {
+                    white-space: nowrap;
+                }
             }
         }
     }
@@ -233,6 +231,11 @@ html, body {
                     border-radius: 0;
                 }
             }
+        }
+
+        .profile {
+            width: 95%;
+            margin: 0;
         }
     }
 }
