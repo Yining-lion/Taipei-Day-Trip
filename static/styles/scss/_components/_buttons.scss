@@ -1,0 +1,27 @@
+@use "variables" as v;
+
+.btn-dialog {
+    height: 46px;
+    background-color: v.$primary-color-cyan-70;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-booking {
+    height: 36px;
+    background-color: v.$primary-color-cyan-70;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-navigation {
+    height: 34px;
+    padding: 10px;
+    cursor: pointer;
+}

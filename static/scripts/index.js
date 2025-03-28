@@ -1,17 +1,13 @@
+import {renderHeader} from "./header.js"
+import {escapeHTML} from "./escapeHTML.js"
+
 const $ = (selector) => document.querySelector(selector);
 
-// 對特定符號進行轉義，防止 XSS 攻擊
-function escapeHTML(str) {
-    return str.replace(/[&<>"']/g, function (char) {
-        return {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#39;'
-        }[char];
-    });
-};
+renderHeader();
+renderMRTList();
+loadAttractions(0);
+$(".arrow_left").addEventListener("click", () => scrollMRTList("left"))
+$(".arrow_right").addEventListener("click", () => scrollMRTList("right"))
 
 async function renderMRTList() {
     let res = await fetch("api/mrts", {
@@ -60,7 +56,7 @@ async function loadAttractions(page, keyword="") {
 
         // 建立框架
         attraction_list.forEach(attraction => {
-            let { name = "", mrt = "", category = "", images } = attraction; // 解構賦值並設立預設值
+            let { name = "", mrt = "", category = "", id, images } = attraction; // 解構賦值並設立預設值
             let img = images[0];
             // 進行轉義
             let safeName = escapeHTML(name || "");
@@ -69,9 +65,11 @@ async function loadAttractions(page, keyword="") {
             
             let attractionHTML = `
             <div class="attraction">
-                <div class="attraction_top" style="background-image: url(${img})">
-                    <p class="attraction_name body-bold">${safeName}</p>
-                </div>
+                <a href="/attraction/${id}">
+                    <div class="attraction_top" style="background-image: url(${img})">
+                        <p class="attraction_name body-bold">${safeName}</p>
+                    </div>
+                </a>
                 <div class="attraction_buttom body-medium">
                     <p class="attraction_mrt">${safeMrt}</p>
                     <p class="attraction_category">${safeCategory}</p>
@@ -98,14 +96,10 @@ function handleSearch(){
     loadAttractions(0, keyword)
 }
 
-$(".search_btn").addEventListener("click",  (e) => {
-    handleSearch();
-})
+$(".search_btn").addEventListener("click", handleSearch)
 
 $(".search_input").addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {  
-        handleSearch();
-    }
+    if (e.key === "Enter") {handleSearch();}
 });
 
 $(".mrt_list").addEventListener("click", (e) => {
@@ -123,9 +117,3 @@ let observer = new IntersectionObserver((entries) => {
         observer.unobserve(entry.target) // 載入後就不要再觀察，避免重複載入
     }
 }, { rootMargin: "250px" }) // 擴大根元素的邊界 // root 用來設置觀察的根元素，若不設置默認為 viewport
-
-renderMRTList();
-loadAttractions(0);
-
-$(".arrow_left").addEventListener("click", () => scrollMRTList("left"))
-$(".arrow_right").addEventListener("click", () => scrollMRTList("right"))

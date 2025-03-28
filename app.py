@@ -77,6 +77,7 @@ async def getAttraction(
 		cursor = cnx.cursor(dictionary=True)
 		cursor.execute(base_sql + "WHERE id = %s",(attractionId,))
 		attraction = cursor.fetchone()
+		attraction["images"] = json.loads(attraction["images"])
 		if attraction == None:
 			return {"error": True, "message": "景點編號不正確"}
 		
