@@ -4,8 +4,66 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Booking</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles/scss/booking.css">
 </head>
 <body>
-  
+
+    <h1 class="button-bold headline">您好，Yakko，待預訂的行程如下：</p>
+    <div class="section">
+      <img class="" src="">
+      <div class="infor">
+        <p class="body-bold">台北一日遊：平安鐘</p>
+        <p class="body-bold" style="margin-right: 10px;">日期：</p>
+        <p class="body-medium">2021-04-23</p>
+        <p class="body-bold" style="margin-right: 10px;">時間：</p>
+        <p class="body-medium">早上 9 點到下午 4 點</p>
+        <p class="body-bold" style="margin-right: 10px;">費用：</p>
+        <p class="body-medium">新台幣 2000 元</p>
+        <p class="body-bold" style="margin-right: 10px;">地點：</p>
+        <p class="body-medium">臺北市 大安區忠孝東路4段</p>
+        <img class="delete" src="/static/data/images/delete.png">
+      </div>
+    </div>
+
+    <div class="contact_form">
+      <h1 class="button-bold title">您的聯絡資訊</h1>
+      <div class="field">
+        <p class="body-medium" style="margin-right: 10px;">聯絡姓名：</p>
+        <input class="body-medium" name="name" type="text">
+      </div>
+      <div class="field">
+        <p class="body-medium" style="margin-right: 10px;">連絡信箱：</p>
+        <input class="body-medium" name="email" type="email">
+      </div>
+      <div class="field">
+        <p class="body-medium" style="margin-right: 10px;">手機號碼：</p>
+        <input class="body-medium" name="phone" type="tel">
+      </div>
+      <p class="body-bold">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</p>
+    </div>
+
+    <div class="payment">
+      <h1 class="button-bold title">信用卡付款資訊</h1>
+      <div class="field">
+        <p class="body-medium" style="margin-right: 10px;">卡片號碼：</p>
+        <input class="body-medium" name="" type="password">
+      </div>
+      <div class="field">
+        <p class="body-medium" style="margin-right: 10px;">過期時間：</p>
+        <input class="body-medium" name="" type="month">
+      </div>
+      <div class="field">
+        <p class="body-medium" style="margin-right: 10px;">驗證密碼：</p>
+        <input class="body-medium" name="" type="text">
+      </div>
+    </div>
+
+    <div class="confirm">
+      <p class="">總價：新台幣 2000 元</p>
+      <button class="btn-booking">確認訂購並付款</button>
+    </div>
+
+  <script type="module" src="/static/scripts/booking.js"></script>
 </body>
 </html>

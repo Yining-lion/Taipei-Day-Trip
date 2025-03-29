@@ -1,0 +1,132 @@
+@use "./_components/variables" as v;  // 變數
+// @use "./_components/typography"; // 文字樣式
+// @use "./_components/buttons";
+
+// *{
+//     border: 1px solid black;
+// }
+
+html,body {
+    position: relative;
+    padding-top: 35px;
+}
+
+.navigation_container {
+    width: 100%;
+    background-color: #FFFFFF;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    border-bottom: 1px solid v.$secondary-color-gray-20;
+
+    .navigation {
+        width: 1200px;
+        margin: 10px auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 54px;
+        white-space: nowrap;
+    
+        .navigation_left {
+            margin-left: 10px;
+            .navigation_left_text {
+                color: v.$primary-color-cyan-70;
+                text-decoration: none;
+            }
+        }
+    
+        .navigation_right {
+            display: flex;
+            color: v.$secondary-color-gray-70;
+            margin-right: 10px;
+            p {
+                padding: 10px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    z-index: 1;
+}
+
+.signup_text, .signin_text {
+    cursor: pointer;
+}
+
+.signin_container.show, .signup_container.show {
+    opacity: 1;
+    top: 30%;
+    z-index: 1;
+}
+
+.dialog_container {
+    width: 340px;
+    border-radius: 5px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 60px #AAAAAA;
+    background-color: #FFFFFF;
+    opacity: 0;
+    transition: all 0.2s;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 10px;
+        background: v.$gradient-dark-cyan;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .close {
+        width: 30px;
+        position: absolute;
+        top: 20px;
+        left: 300px;
+        cursor: pointer;
+    }
+
+    p {
+        color: v.$secondary-color-gray-70;
+    }
+
+    .sign_form {
+        margin-top: -10px;
+        width: 310px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        input {
+            height: 15px;
+            color: v.$secondary-color-gray-50;
+            padding: 15px;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .navigation {
+        width: 95% !important; 
+    }
+}

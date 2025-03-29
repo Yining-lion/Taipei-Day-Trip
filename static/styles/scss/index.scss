@@ -1,37 +1,20 @@
-@use "variables" as v;  // 變數
-@use "typography"; // 文字樣式
+@use "./_components/variables" as v;  // 變數
+@use "./_components/typography"; // 文字樣式
+@use "./_components/buttons";
+@import "header";
 
 // *{
 //     border: solid 1px black;
 // }
 
-html,body {
+html, body{
     margin: 0;
     padding: 0;
+    padding-top: 35px;
 }
 
-.navigation {
-    width: 1200px;
-    margin: 10px auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 54px;
-    white-space: nowrap;
-
-    .navigation_left {
-        color: v.$primary-color-cyan-70;
-        margin-left: 10px;
-    }
-
-    .navigation_right {
-        display: flex;
-        color: v.$secondary-color-gray-70;
-        margin-right: 10px;
-        p {
-            padding: 10px;
-        }
-    }
+.navigation_container{
+    border: none;
 }
 
 .hero_section {
@@ -97,17 +80,39 @@ html,body {
             padding: 5px 15px;
             color: v.$secondary-color-gray-70;
             cursor: pointer;
+            
+            &:hover {
+                color: #000000;
+            }
         }
     }
 
     .arrow_left {
+        background-image: url("/static/data/images/arrow\ left.png");
+        width: 32px;
+        height: 32px;
+        background-size: cover;
         margin-left: 15px;
         cursor: pointer;
+        flex: none;
+
+        &:hover {
+            background-image: url("/static/data/images/Hovered\(left\).png");
+        }
     }
 
     .arrow_right {
+        background-image: url("/static/data/images/arrow\ right.png");
+        width: 32px;
+        height: 32px;
+        background-size: cover;
         margin-right: 15px;
         cursor: pointer;
+        flex: none;
+
+        &:hover {
+            background-image: url("/static/data/images/Hovered\(right\).png");
+        }
     }
 }
 
@@ -132,6 +137,7 @@ html,body {
             position: relative;
             background-size: cover;
             background-position: center;
+            cursor: pointer;
 
             .attraction_name {
                 position: absolute;
@@ -173,20 +179,20 @@ html,body {
 }
 
 @media (max-width: 1200px) {
-    .navigation {
-        width: 95%;
-    }
     .hero_section_text {
        margin: 0 10px;
     }
+
     .content {
         width: 95%;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+
         .attraction {
             margin: auto;
         }
     }
+
     .list_bar {
         width: 95%;
     }
