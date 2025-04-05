@@ -30,9 +30,18 @@ cnxpool = mysql.connector.pooling.MySQLConnectionPool(
     pool_size=int(os.getenv("DB_POOL_SIZE")),
     **dbconfig
 )
-
+import time
+from passlib.context import CryptContext
 # 密碼使用 bcrypt 加鹽雜湊加密
-pwd_context = CryptContext(schemes=["bcrypt"],  bcrypt__rounds=10, deprecated="auto")
+pwd_context = CryptContext(schemes=["bcrypt"],  bcrypt__rounds=8, deprecated="auto")
+
+
+for _ in range(3):
+    start = time.time()
+    pwd_context.hash("test123")
+    pwd_context.verify("123", pwd_context.hash("test123"))
+    end = time.time()
+    print("Hash Time:", end - start)
 
 # 從 HTTP Header 的 Authorization 抓出 token
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/user/auth")
