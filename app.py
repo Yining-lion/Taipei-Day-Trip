@@ -32,7 +32,7 @@ cnxpool = mysql.connector.pooling.MySQLConnectionPool(
 )
 
 # 密碼使用 bcrypt 加鹽雜湊加密
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["bcrypt"],  bcrypt__rounds=10, deprecated="auto")
 
 # 從 HTTP Header 的 Authorization 抓出 token
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/user/auth")
@@ -137,7 +137,7 @@ async def signIn(user: UserSignIn):
 async def getUser(current_user: Annotated[dict, Depends(get_current_user)]): 
     return {"data": current_user}
 
-base_sql = "SELECT id, name, description, category, address, transport, mrt, lat, lng, images FROM taipei_attractions "
+base_sql = "SELECT id, name, description, category, address, transport, mrt, images FROM taipei_attractions "
 
 @app.get("/api/attractions")
 async def getAttractions(
