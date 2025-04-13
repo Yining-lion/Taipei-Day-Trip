@@ -22,6 +22,7 @@ export function JumpToBooking(){
 export async function loadBookings() {
     let token = await verifyToken();
     if (!token) {
+        location.href = "/";
         popupView.showSignin();
         popupEvents();
         return;
