@@ -1,7 +1,6 @@
-import {renderHeader, userAuthEvents, checkSignInStatus} from "./header.js"
+import {initHeader} from "./header.js"
+import {loadBookings} from "./controllers/bookingContro.js"
 
-const $ = (selector) => document.querySelector(selector);
 
-renderHeader();
-userAuthEvents();
-checkSignInStatus();
+initHeader();
+loadBookings();
