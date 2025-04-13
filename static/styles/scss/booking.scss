@@ -3,3 +3,179 @@
 @use "./_components/buttons";
 @import "header";
 
+// *{
+//     border: solid 1px black;
+// }
+
+html, body{
+    margin: 0;
+    padding: 0;
+    padding-top: 55px;
+}
+
+p {
+    color: v.$secondary-color-gray-70;
+}
+
+h1 {
+    color: v.$primary-color-cyan-70;
+}
+
+input {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid v.$secondary-color-gray-20;
+}
+
+.field{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.deperate_line{
+    width: 1200px;
+    height: 1px;
+    border: none;
+    margin: 0 auto;
+    background-color: v.$secondary-color-gray-20;
+}
+
+.headline {
+    width: 1000px;
+    margin: auto;
+}
+
+.booking_list {
+    width: 980px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+
+    .section {
+        display: flex;
+        width: 100%;
+        margin: 15px auto;
+
+        .atttraction_img {
+            width: 266px;
+            height: 200px;
+            object-fit: cover;
+            object-position: center;
+        }
+    
+        .infor {
+            position: relative;
+            width: 100%;
+            margin-left: 20px;
+    
+            .field{
+                height: 36px;
+            }
+    
+            .delete {
+                position: absolute;
+                top: 0;
+                right: 0;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.contact_form {
+    width: 980px;
+    margin: 40px auto;
+
+    .note_text {
+        line-height: 25px;
+    }
+}
+
+.payment {
+    width: 980px;
+    margin: 40px auto;
+
+    
+    input[type="month"]::-webkit-calendar-picker-indicator {
+        background-image: none;
+    }
+}
+
+.confirm {
+    width: 980px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .pay_btn {
+        width: 173px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+    }
+}
+
+.footer {
+    width: 100%;
+    height: 104px;
+    background-color: v.$secondary-color-gray-50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+
+    p {
+        color: #FFFFFF;
+    }
+}
+
+@media (max-width: 1200px) {
+    .headline {
+        width: 95%;
+    }
+    
+    .booking_list, .deperate_line, .contact_form, .payment, .confirm {
+        width: 95%;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .booking_list {
+        width: 95%;
+        margin: 40px auto;
+        display: flex;
+
+        .section {
+            display: flex;
+            flex-direction: column;
+            margin: 20px auto;
+
+            .atttraction_img {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .infor {
+                margin: 0;
+    
+                .delete {
+                    top: auto; 
+                    bottom: -20px;
+                }
+            }
+        }
+    }
+
+    .contact_form, .payment, .confirm {
+        width: 95%;
+        margin: 30px auto;
+
+        p:not(.note_text) {
+            white-space: nowrap;
+        }
+    }
+}
