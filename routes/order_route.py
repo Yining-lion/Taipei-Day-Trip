@@ -2,11 +2,16 @@ from models.user_model import get_current_user
 from models.order_model import save_order, get_order
 from models.order_model import OrderRequest
 from fastapi import *
+from dotenv import load_dotenv
 from typing import Annotated
 import os
 import httpx
 from datetime import datetime
 import random, string
+import json
+
+
+load_dotenv()
 
 router = APIRouter(prefix="/api", tags=["order"])
 
@@ -98,7 +103,7 @@ async def get_order_route(
         # 多筆行程
         trips = []
         for order in orders:
-            images = order.loads(order["images"])
+            images = json.loads(order["images"])
             trips.append({
                 "attraction": {
                     "id": order["attraction_id"],
