@@ -25,12 +25,24 @@ input {
     padding: 5px 10px;
     border-radius: 5px;
     border: 1px solid v.$secondary-color-gray-20;
+    &:focus {
+        outline: none;
+    }
 }
 
-.field{
+.field {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.tpfield {
+    height: 25px;
+    width: 250px;
+    border: 1px solid v.$secondary-color-gray-20;
+    border-radius: 5px;
+    margin: 5px 0;
+    padding: 5px;
 }
 
 .deperate_line{

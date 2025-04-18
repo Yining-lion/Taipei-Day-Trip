@@ -226,167 +226,33 @@ html, body {
 html, body {
   margin: 0;
   padding: 0;
-  padding-top: 55px;
+  height: 100vh;
+  padding-top: 35px;
+  overflow: hidden;
 }
 
 p {
   color: #666666;
 }
 
-h1 {
-  color: #448899;
-}
-
-input {
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: 1px solid #E8E8E8;
-}
-input:focus {
-  outline: none;
-}
-
-.field {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.tpfield {
-  height: 25px;
-  width: 250px;
-  border: 1px solid #E8E8E8;
-  border-radius: 5px;
-  margin: 5px 0;
-  padding: 5px;
-}
-
-.deperate_line {
-  width: 1200px;
-  height: 1px;
-  border: none;
-  margin: 0 auto;
-  background-color: #E8E8E8;
-}
-
-.headline {
-  width: 1000px;
-  margin: auto;
-}
-
-.booking_list {
-  width: 980px;
-  margin: 20px auto;
+.content {
   display: flex;
   flex-direction: column;
-}
-.booking_list .section {
-  display: flex;
-  width: 100%;
-  margin: 15px auto;
-}
-.booking_list .section .atttraction_img {
-  width: 266px;
-  height: 200px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
-}
-.booking_list .section .infor {
-  position: relative;
-  width: 100%;
-  margin-left: 20px;
-}
-.booking_list .section .infor .field {
-  height: 36px;
-}
-.booking_list .section .infor .delete {
-  position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer;
-}
-
-.contact_form {
-  width: 980px;
-  margin: 40px auto;
-}
-.contact_form .note_text {
-  line-height: 25px;
-}
-
-.payment {
-  width: 980px;
-  margin: 40px auto;
-}
-.payment input[type=month]::-webkit-calendar-picker-indicator {
-  background-image: none;
-}
-
-.confirm {
-  width: 980px;
-  margin: 30px auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-.confirm .pay_btn {
-  width: 173px;
-  display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16px;
+  margin-top: 30px;
 }
 
 .footer {
   width: 100%;
-  height: 104px;
+  height: 80vh;
   background-color: #757575;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #FFFFFF;
   margin-top: 40px;
 }
 .footer p {
   color: #FFFFFF;
-}
-
-@media (max-width: 1200px) {
-  .headline {
-    width: 95%;
-  }
-  .booking_list, .deperate_line, .contact_form, .payment, .confirm {
-    width: 95%;
-  }
-}
-@media (max-width: 600px) {
-  .booking_list {
-    width: 95%;
-    margin: 40px auto;
-    display: flex;
-  }
-  .booking_list .section {
-    display: flex;
-    flex-direction: column;
-    margin: 20px auto;
-  }
-  .booking_list .section .atttraction_img {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  .booking_list .section .infor {
-    margin: 0;
-  }
-  .booking_list .section .infor .delete {
-    top: auto;
-    bottom: -20px;
-  }
-  .contact_form, .payment, .confirm {
-    width: 95%;
-    margin: 30px auto;
-  }
-  .contact_form p:not(.note_text), .payment p:not(.note_text), .confirm p:not(.note_text) {
-    white-space: nowrap;
-  }
-}/*# sourceMappingURL=booking.css.map */
+}/*# sourceMappingURL=thankyou.css.map */

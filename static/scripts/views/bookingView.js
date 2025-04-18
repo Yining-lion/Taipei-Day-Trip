@@ -11,20 +11,21 @@ export function renderBookings(userName, bookingList){
       p.classList.add("no_booking_text")
       p.textContent = "目前沒有任何待預定的行程"
       $(".booking_list").appendChild(p);
+      return;
     } 
 
     let html = ""
-    bookingList.forEach((data) => {
-      let time = data.time == "morning" ? "早上 9 點到下午 4 點" : "下午 2 點到晚上 9 點"
+    bookingList.forEach((booking) => {
+      let time = booking.time == "morning" ? "早上 9 點到下午 4 點" : "下午 2 點到晚上 9 點"
 
       html += `
       <div class="section">
-        <img class="atttraction_img" src="${data.attraction.image}">
+        <img class="atttraction_img" src="${booking.attraction.image}">
         <div class="infor">
-          <h1 class="body-bold">台北一日遊：${data.attraction.name}</h1>
+          <h1 class="body-bold">台北一日遊：${booking.attraction.name}</h1>
           <div class="field">
             <p class="body-bold" style="margin-right: 10px;">日期：</p>
-            <p class="body-medium">${data.date}</p>
+            <p class="body-medium">${booking.date}</p>
           </div>
           <div class="field">
             <p class="body-bold" style="margin-right: 10px;">時間：</p>
@@ -32,13 +33,13 @@ export function renderBookings(userName, bookingList){
           </div>
           <div class="field">
             <p class="body-bold" style="margin-right: 10px;">費用：</p>
-            <p class="body-medium">新台幣 ${data.price} 元</p>
+            <p class="body-medium">新台幣 ${booking.price} 元</p>
           </div>
           <div class="field">
             <p class="body-bold" style="margin-right: 10px;">地點：</p>
-            <p class="body-medium">${data.attraction.address}</p>
+            <p class="body-medium">${booking.attraction.address}</p>
           </div>
-          <img class="delete" data-bookingid="${data.booking_id}" src="/static/data/images/delete.png">
+          <img class="delete" data-bookingid="${booking.booking_id}" src="/static/data/images/delete.png">
         </div>
       </div>
         `
@@ -47,22 +48,22 @@ export function renderBookings(userName, bookingList){
 }
 
 export function renderPayment(bookingList){
-  let totalPrice = bookingList.reduce((sum, data) => sum + data.price, 0);
+  let totalPrice = bookingList.reduce((sum, booking) => sum + booking.price, 0);
   let paymentHTML = `
   <hr class="abc deperate_line">
     
     <div class="contact_form">
       <p class="button-bold title">您的聯絡資訊</p>
       <div class="field">
-        <p class="body-medium" style="margin-right: 10px;">聯絡姓名：</p>
+        <p class="user_name body-medium" style="margin-right: 10px;">聯絡姓名：</p>
         <input class="body-medium" name="contact_name" type="text">
       </div>
       <div class="field">
-        <p class="body-medium" style="margin-right: 10px;">連絡信箱：</p>
+        <p class="user_email body-medium" style="margin-right: 10px;">連絡信箱：</p>
         <input class="body-medium" name="contact_email" type="email">
       </div>
       <div class="field">
-        <p class="body-medium" style="margin-right: 10px;">手機號碼：</p>
+        <p class="user_phone body-medium" style="margin-right: 10px;">手機號碼：</p>
         <input class="body-medium" name="contact_phone" type="tel" pattern="[0-9]{10}">
       </div>
       <p class="note_text body-bold">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</p>
@@ -74,15 +75,15 @@ export function renderPayment(bookingList){
       <p class="button-bold title">信用卡付款資訊</p>
       <div class="field">
         <p class="body-medium" style="margin-right: 10px;">卡片號碼：</p>
-        <input class="body-medium" name="card_number" type="text">
+        <div class="tpfield" id="card-number"></div>
       </div>
       <div class="field">
         <p class="body-medium" style="margin-right: 10px;">過期時間：</p>
-        <input class="body-medium" name="card_expiry" type="month">
+        <div class="tpfield" id="card-expiration-date"></div>
       </div>
       <div class="field">
         <p class="body-medium" style="margin-right: 10px;">驗證密碼：</p>
-        <input class="body-medium" name="card_cvc" type="password" maxlength="3">
+        <div class="tpfield" id="card-ccv"></div>
       </div>
     </div>
   
@@ -97,5 +98,10 @@ export function renderPayment(bookingList){
       <p>COPYRIGHT © 2021 台北一日遊</p>
     </div>
   `
-  document.body.insertAdjacentHTML("afterend", paymentHTML);
+  document.body.insertAdjacentHTML("beforeend", paymentHTML);
+}
+
+export function fillContactInfo(user) {
+  $("input[name='contact_name']").value = user.name || "";
+  $("input[name='contact_email']").value = user.email || "";
 }

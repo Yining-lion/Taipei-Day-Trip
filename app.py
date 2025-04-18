@@ -1,7 +1,7 @@
 from fastapi import *
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from routes import user_route, attraction_route, booking_route
+from routes import user_route, attraction_route, booking_route, order_route
 from fastapi.responses import JSONResponse
 
 app = FastAPI()
@@ -9,6 +9,7 @@ app = FastAPI()
 app.include_router(attraction_route.router)
 app.include_router(user_route.router)
 app.include_router(booking_route.router)
+app.include_router(order_route.router)
 
 # 自訂處理錯誤
 @app.exception_handler(HTTPException)
