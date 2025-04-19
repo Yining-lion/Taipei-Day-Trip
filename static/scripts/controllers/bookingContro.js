@@ -3,7 +3,8 @@ import {verifyToken} from "../services/authService.js";
 import {popupView} from "../views/popupView.js"
 import {popupEvents} from "../controllers/popupContro.js"
 import {getBookings, fetchDeleteBooking} from "../models/bookingModel.js";
-import {renderBookings, renderPayment} from "../views/bookingView.js";
+import {renderBookings, renderPayment, fillContactInfo} from "../views/bookingView.js";
+import { handleTappay } from "./orderContro.js";
 import { getCurrentUser } from "../models/userModel.js"; 
 
 
@@ -31,7 +32,10 @@ export async function loadBookings() {
     let data = await getBookings(token);
     renderBookings(user.data.name, data.data);
     renderPayment(data.data);
+    fillContactInfo(user.data);
     bindDeleteBookingEvent();
+    handleTappay();
+    localStorage.setItem("bookingList", JSON.stringify(data.data));
 }
 
 function bindDeleteBookingEvent() {
