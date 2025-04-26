@@ -1,3 +1,4 @@
+
 from pydantic import BaseModel
 
 # 定義 Schema

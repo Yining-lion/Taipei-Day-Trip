@@ -8,6 +8,7 @@ import { verifyToken } from "../services/authService.js";
 import { getBookings, fetchAddBooking, fetchDeleteBooking } from "../models/bookingModel.js";
 import { popupView } from "../views/popupView.js";
 import { popupEvents } from "../controllers/popupContro.js";
+import { formatDate } from "../utils/formatDate.js"
 
 let currentIndex = { index: 0 }; // 包成物件以進行址拷貝 (pass-by-reference)，而非值拷貝 (pass-by-value)
 
@@ -32,7 +33,8 @@ export async function loadAttractionPage(){
         renderAttractionImages(images, currentIndex);
         imageSwitchEvents(images, currentIndex);
         updatePriceEvents();
-        startBooking()
+        startBooking();
+        setDateMin();
     }catch(error){
         console.log("加載景點數據出錯:", error)
     }
@@ -97,4 +99,8 @@ function imageSwitchEvents(images, currentIndex) {
 function updatePriceEvents() {
     $("#morning").addEventListener("change", updatePrice)
     $("#afternoon").addEventListener("change", updatePrice)
+}
+
+function setDateMin() {
+    $(".date_input").min = formatDate(new Date())
 }

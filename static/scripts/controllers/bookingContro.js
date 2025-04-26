@@ -1,11 +1,12 @@
-import {$} from "../utils/selector.js"
-import {verifyToken} from "../services/authService.js";
-import {popupView} from "../views/popupView.js"
-import {popupEvents} from "../controllers/popupContro.js"
-import {getBookings, fetchDeleteBooking} from "../models/bookingModel.js";
-import {renderBookings, renderPayment, fillContactInfo} from "../views/bookingView.js";
-import { handleTappay } from "./orderContro.js";
+import { $ } from "../utils/selector.js"
+import { verifyToken } from "../services/authService.js";
+import { popupView } from "../views/popupView.js"
+import { popupEvents } from "../controllers/popupContro.js"
 import { getCurrentUser } from "../models/userModel.js"; 
+import { getBookings, fetchDeleteBooking } from "../models/bookingModel.js";
+import { renderBookings } from "../views/bookingView.js";
+import { fillUserInfo } from "../utils/fillUserInfor.js";
+import { handleTappay } from "./orderContro.js";
 
 
 export function JumpToBooking(){
@@ -31,8 +32,7 @@ export async function loadBookings() {
     let user = await getCurrentUser(token);
     let data = await getBookings(token);
     renderBookings(user.data.name, data.data);
-    renderPayment(data.data);
-    fillContactInfo(user.data);
+    fillUserInfo($("input[name='contact_name']"), $("input[name='contact_email']"), user.data);
     bindDeleteBookingEvent();
     handleTappay();
     localStorage.setItem("bookingList", JSON.stringify(data.data));
@@ -43,7 +43,6 @@ function bindDeleteBookingEvent() {
         btn.addEventListener("click", async (e) => {
             e.preventDefault();
             let bookingId = btn.dataset.bookingid;
-            console.log(bookingId)
             await deleteBooking(bookingId);
         });
     });

@@ -1,4 +1,5 @@
 @use "./_components/variables" as v;  // 變數
+@import "loading";
 // @use "./_components/typography"; // 文字樣式
 // @use "./_components/buttons";
 
@@ -49,6 +50,39 @@ html,body {
             .signout_text {
                 display: none;
             }
+        }
+    }
+}
+
+.member_container {
+    width: auto;
+    position: fixed;
+    transform: translateX(-50%);
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1;
+
+    &.show {
+        opacity: 1;
+      }
+
+    .member_menu {
+        border: 1px solid v.$secondary-color-gray-20 !important;
+        width: 100px;
+        position: absolute;
+        top: 100%;
+        left: 50%; 
+        transform: translateX(-50%);
+        background-color: #FFFFFF;
+        color: v.$secondary-color-gray-70;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 2px 5px #AAAAAA;
+        margin-top: 4px;
+
+        .menu_item {
+            padding: 8px 0;
         }
     }
 }
@@ -127,6 +161,47 @@ html,body {
             border: 1px solid #CCCCCC;
             border-radius: 5px;
         }
+
+        .password-wrapper{
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            input {
+                width: 100%;
+            }
+
+            .eye {
+                width: 20px;
+                height: 20px;
+                background-image: url("/static/data/images/eye_hidden.png");
+                background-size: cover;
+                position: absolute;
+                right: 15px;
+                cursor: pointer;
+            }
+
+            .eye.open {
+                background-image: url("/static/data/images/eye.png");
+            }
+        }
+
+        .signin_btn, .signup_btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .btn_spinner {
+                display: none;
+                width: 20px;
+                height: 20px;
+                border: 2px solid #fff;
+                border-top: 2px solid v.$primary-color-cyan-70;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+        }
     }
 
     .message {
@@ -134,9 +209,8 @@ html,body {
     }
 }
 
-
 @media (max-width: 1200px) {
-    .navigation {
+    .navigation, .member_container {
         width: 95% !important; 
     }
 }

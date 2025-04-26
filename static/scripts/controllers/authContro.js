@@ -4,7 +4,7 @@ import { verifyToken, removeToken } from "../services/authService.js"
 export async function checkSignInStatus() {
     let token = await verifyToken();
     if (token) {
-        $(".signout_text").style.display = "block";
+        $(".member_text").style.display = "block";
         $(".signin_signup_text").style.display = "none";
         $(".signout_text").onclick = signOut;
     }
