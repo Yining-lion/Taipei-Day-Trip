@@ -44,7 +44,7 @@ export function renderProfile(user) {
 
 export function renderNoOrder() {
     $(".section_history").innerHTML = "";
-    let html = `<p class="body-medium" style="margin: auto;">尚無歷史訂單</p>`
+    let html = `<p class="body-medium" style="margin: 200px auto;">尚無歷史訂單</p>`
     $(".section_history").insertAdjacentHTML("afterbegin", html);
 }
 
