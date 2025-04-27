@@ -2,7 +2,7 @@ import { $ } from "../utils/selector.js";
 
 export function renderBookings(userName, bookingList){
     let headline = `<p class="button-bold headline">您好，${userName}，待預訂的行程如下：</p>`;
-    $(".booking_list").insertAdjacentHTML("beforebegin", headline)
+    $(".navigation_container").insertAdjacentHTML("afterend", headline)
 
     // 若沒有待預定的行程
     if (bookingList.length === 0){
