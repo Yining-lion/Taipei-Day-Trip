@@ -31,11 +31,12 @@ export function renderProfile(user) {
             <div class="field">
                 <p class="body-medium" style="color:brown">* 若要更新密碼，需先進行舊密碼驗證</p>
             </div>
-            <button class="update_btn btn-member">
-                <span class="btn_text body-medium">更新</span>
-                <div class="btn_spinner"></div>
-            </button>
         </div>
+
+        <button class="update_btn btn-member">
+            <span class="btn_text body-medium">更新</span>
+            <div class="btn_spinner"></div>
+        </button>
     </div>    
     ` 
     $(".detail_container").insertAdjacentHTML("afterbegin", profileHTML);
