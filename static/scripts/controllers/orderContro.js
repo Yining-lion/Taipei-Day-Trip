@@ -58,6 +58,7 @@ async function onSubmit(token) {
     };
     // 處理待預訂的行程
     let bookingList = JSON.parse(localStorage.getItem("bookingList"));
+    console.log(bookingList)
     if (bookingList.length === 0) {
         alert("沒有可付款的行程");
         return;
@@ -65,7 +66,7 @@ async function onSubmit(token) {
     // 送資料至後端
     let orderData = buildOrderData(prime, bookingList, contact);
     let res = await fetchAddOrder(token, orderData);
-    console.log(res)
+
     // if (res !== undefined && res.data !== undefined && res.data.number !== undefined) 同等以下
     if (res?.data?.number) { 
         localStorage.removeItem("bookingList");

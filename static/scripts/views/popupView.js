@@ -36,6 +36,27 @@ export const popupView = {
         $(".signup_email").value = "";
         $(".signup_password").value = "";
         $(".signup_container .message").style.display = "none";
+    },
+
+    showMember: () => {
+        let rect = $(".member_text").getBoundingClientRect(); // 抓元素位置
+        let centerX = rect.left + rect.width / 2; // 找到會員中心文字的中心點
+        $(".member_container").style.top = `${rect.bottom + window.scrollY}px`; // 把 top 設在文字下面
+        $(".member_container").style.left = `${centerX}px`;
+        $(".member_container").style.display = "block";
+        setTimeout(() => {
+            $(".member_container").classList.add("show");
+        }, 10);
+        window.isMemberMenuOpen = true;
+    },
+
+    hideMember: () => {
+        $(".member_container").classList.remove("show");
+        setTimeout(() => {
+            $(".member_container").style.display = "none";
+        }, 300); // 跟 CSS transition 的時間一樣
+        window.isMemberMenuOpen = false;
     }
 };
+
 

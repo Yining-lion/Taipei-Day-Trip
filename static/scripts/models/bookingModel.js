@@ -1,4 +1,7 @@
+import { showLoading, hideLoading } from "../utils/loading.js";
+
 export async function getBookings(token) {
+    showLoading();
     try {
         let res = await fetch("/api/booking", {
             method: "GET",
@@ -7,6 +10,8 @@ export async function getBookings(token) {
         return await res.json();
     } catch (err) {
         console.error(err);
+    } finally {
+        hideLoading();
     }
 }
 

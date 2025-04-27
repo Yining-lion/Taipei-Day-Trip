@@ -1,5 +1,5 @@
 from models.user_model import get_current_user
-from models.order_model import save_order, get_order
+from models.order_model import save_order, get_order_numbers, get_order
 from models.order_model import OrderRequest
 from fastapi import *
 from dotenv import load_dotenv
@@ -80,6 +80,21 @@ async def create_order(
     except Exception as e:
         return {"error": True, "message": str(e)}
 
+@router.get("/order/numbers")
+async def get_order_number_route(
+    current_user: Annotated[dict, Depends(get_current_user)],
+):
+    try:
+        order_numbers = await get_order_numbers(current_user["id"])
+
+        if not order_numbers:
+            return {"data": None}
+        
+        return {"data": order_numbers}
+        
+    except Exception as e:
+        return {"error": True, "message": str(e)}
+
 @router.get("/order")
 async def get_order_route(
     current_user: Annotated[dict, Depends(get_current_user)],
@@ -112,13 +127,14 @@ async def get_order_route(
                     "image": images[0]
                 },
                 "date": order["date"],
-                "time": order["time"]
+                "time": order["time"],
+                "price": order["price"]
             })
 
         return {
             "data": {
                 "number": first["order_number"],
-                "price": first["price"],
+                "price": first["total_price"],
                 "trips": trips,
                 "contact": contact,
                 "status": first["status"]

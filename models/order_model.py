@@ -18,6 +18,7 @@ class Trip(BaseModel):
     attraction: Attraction
     date: str
     time: str
+    price: int
 
 class OrderDetail(BaseModel):
     trips: List[Trip]
@@ -38,7 +39,7 @@ async def save_order(order_number, user_id,  order_data):
         cnx = get_connection()
         cursor = cnx.cursor(dictionary=True)
 
-        insert_order = """INSERT INTO orders (order_number, user_id, price, status, contact_name, contact_email, contact_phone)
+        insert_order = """INSERT INTO orders (order_number, user_id, total_price, status, contact_name, contact_email, contact_phone)
                             VALUES (%s, %s, %s, %s, %s, %s, %s)"""
         cursor.execute(insert_order, (order_number, user_id, order_price, order_status, contact.name, contact.email, contact.phone))
 
@@ -46,10 +47,10 @@ async def save_order(order_number, user_id,  order_data):
         print(order_id)
 
         # 插入每一筆行程細節
-        insert_detail = """INSERT INTO order_details (order_id, attraction_id, date, time) VALUES (%s, %s, %s, %s)"""
+        insert_detail = """INSERT INTO order_details (order_id, attraction_id, date, time, price) VALUES (%s, %s, %s, %s, %s)"""
 
         for trip in trips:
-            cursor.execute(insert_detail, (order_id, trip.attraction.id, trip.date, trip.time))
+            cursor.execute(insert_detail, (order_id, trip.attraction.id, trip.date, trip.time, trip.price))
 
         cursor.execute("DELETE FROM bookings WHERE user_id = %s", (user_id,))
 
@@ -64,14 +65,27 @@ async def save_order(order_number, user_id,  order_data):
         cursor.close()
         cnx.close()
 
+async def get_order_numbers(user_id):
+
+    try:
+        cnx = get_connection()
+        cursor = cnx.cursor(dictionary=True)
+        cursor.execute("SELECT order_number FROM orders WHERE user_id = %s ORDER BY time DESC", (user_id, ))
+        result = cursor.fetchall()
+        return result
+        
+    finally:
+        cursor.close()
+        cnx.close()
+
 async def get_order(order_number):
 
     try:
         cnx = get_connection()
         cursor = cnx.cursor(dictionary=True)
 
-        select_order = """SELECT orders.order_number, orders.price, orders.status, orders.contact_name ,orders.contact_email ,orders.contact_phone,
-                            order_details.attraction_id ,order_details.date ,order_details.time,
+        select_order = """SELECT orders.order_number, orders.total_price, orders.status, orders.contact_name ,orders.contact_email ,orders.contact_phone,
+                            order_details.attraction_id ,order_details.date ,order_details.time, order_details.price,
                             taipei_attractions.name ,taipei_attractions.address ,taipei_attractions.images
                             FROM orders
                             INNER JOIN order_details ON orders.id = order_details.order_id
@@ -79,7 +93,6 @@ async def get_order(order_number):
                             WHERE order_number = %s"""
         cursor.execute(select_order, (order_number, ))
         result = cursor.fetchall()
-
         return result
         
     finally:

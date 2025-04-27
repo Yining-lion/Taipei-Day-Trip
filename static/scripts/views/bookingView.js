@@ -2,7 +2,7 @@ import { $ } from "../utils/selector.js";
 
 export function renderBookings(userName, bookingList){
     let headline = `<p class="button-bold headline">您好，${userName}，待預訂的行程如下：</p>`;
-    document.body.insertAdjacentHTML("afterbegin", headline)
+    $(".navigation_container").insertAdjacentHTML("afterend", headline)
 
     // 若沒有待預定的行程
     if (bookingList.length === 0){
@@ -11,6 +11,8 @@ export function renderBookings(userName, bookingList){
       p.classList.add("no_booking_text")
       p.textContent = "目前沒有任何待預定的行程"
       $(".booking_list").appendChild(p);
+      $(".footer").style.height = "80vh";
+      document.body.style.overflow = "hidden";
       return;
     } 
 
@@ -45,9 +47,11 @@ export function renderBookings(userName, bookingList){
         `
     })
     $(".booking_list").innerHTML = html;
+
+    renderPayment(bookingList);
 }
 
-export function renderPayment(bookingList){
+function renderPayment(bookingList){
   let totalPrice = bookingList.reduce((sum, booking) => sum + booking.price, 0);
   let paymentHTML = `
   <hr class="abc deperate_line">
@@ -91,17 +95,11 @@ export function renderPayment(bookingList){
   
     <div class="confirm">
       <p class="body-bold">總價：新台幣 ${totalPrice} 元</p>
-      <button class="pay_btn btn-booking">確認訂購並付款</button>
-    </div>
-  
-    <div class="footer body-bold">
-      <p>COPYRIGHT © 2021 台北一日遊</p>
+      <button class="pay_btn btn-booking">
+        <span class="btn_text">確認訂購並付款</span>
+        <div class="btn_spinner"></div>
+      </button>
     </div>
   `
-  document.body.insertAdjacentHTML("beforeend", paymentHTML);
-}
-
-export function fillContactInfo(user) {
-  $("input[name='contact_name']").value = user.name || "";
-  $("input[name='contact_email']").value = user.email || "";
+  $(".footer").insertAdjacentHTML("beforebegin", paymentHTML);
 }

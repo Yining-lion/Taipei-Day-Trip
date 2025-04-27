@@ -2,6 +2,7 @@
 @use "./_components/typography"; // 文字樣式
 @use "./_components/buttons";
 @import "header";
+@import "loading";
 
 // *{
 //     border: solid 1px black;
@@ -11,6 +12,7 @@ html, body{
     margin: 0;
     padding: 0;
     padding-top: 35px;
+    position: relative;
 }
 
 .navigation_container{
@@ -89,9 +91,10 @@ html, body{
 
     .arrow_left {
         background-image: url("/static/data/images/arrow\ left.png");
-        width: 32px;
-        height: 32px;
+        width: 35px;
+        height: 35px;
         background-size: cover;
+        background-position: center;
         margin-left: 15px;
         cursor: pointer;
         flex: none;
@@ -103,9 +106,10 @@ html, body{
 
     .arrow_right {
         background-image: url("/static/data/images/arrow\ right.png");
-        width: 32px;
-        height: 32px;
+        width: 35px;
+        height: 35px;
         background-size: cover;
+        background-position: center;
         margin-right: 15px;
         cursor: pointer;
         flex: none;
