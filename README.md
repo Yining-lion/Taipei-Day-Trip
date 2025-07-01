@@ -15,6 +15,12 @@ Test card：4242-4242-4242-4242 | 12/34 | CVV 123
 - 會員可編輯個人資訊（如：上傳大頭照、變更帳號密碼）
 - 可查詢歷史訂單記錄
 
+## 🔹技術特色
+- 使用  HTML + SCSS + Javascript 建立前端，支援 RWD 響應式設計
+- 前後端採 MVC 架構與分離式開發，使用 AJAX 串接 RESTful API 顯示景點資料
+- 後端使用 FastAPI + MySQL 實作景點查詢、預約下單、會員系統等功能
+- 串接 TapPay 第三方金流，完成付款流程與交易資料紀錄
+
 ## 🔹RESTful API
 ![image](https://github.com/Yining-lion/Taipei-Day-Trip/blob/bff5fe47c2416ee793c98fc336b08e446ea22172/Readme/RESTful%20API%20%E6%96%87%E4%BB%B6.png)
 
