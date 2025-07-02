@@ -21,6 +21,53 @@ Test card：4242-4242-4242-4242 | 12/34 | CVV 123
 - 後端使用 FastAPI + MySQL 實作景點查詢、預約下單、會員系統等功能
 - 串接 TapPay 第三方金流，完成付款流程與交易資料紀錄
 
+## 🔹專案架構圖
+```
+Taipei-Day-Trip/
+├── app.py
+├── insert_data.py
+│
+├── models
+│   ├── attraction_model.py
+│   ├── booking_model.py
+│   ├── order_model.py
+│   └── user_model.py
+│
+├── routes
+│   ├── attraction_route.py
+│   ├── booking_route.py
+│   ├── order_route.py
+│   └── user_route.py
+│
+├── utils
+│   ├── jwt_auth.py
+│   ├── database.py
+│   └── user_schema.py
+│
+└── static
+    ├── attraction.html
+    ├── booking.html
+    ├── index.html
+    ├── thankyou.html
+    ├── styles/scss/
+    │
+    ├── scripts
+    │   ├── attraction.js
+    │   ├── booking.js
+    │   ├── header.js
+    │   ├── index.js
+    │   ├── thankyou.js
+    │   ├── controllers/
+    │   ├── models/
+    │   ├── services/
+    │   ├── utils/
+    │   └── views/
+    │
+    └── data
+        ├── images/
+        └── taipei-attractions.json
+```
+
 ## 🔹RESTful API
 ![image](https://github.com/Yining-lion/Taipei-Day-Trip/blob/bff5fe47c2416ee793c98fc336b08e446ea22172/Readme/RESTful%20API%20%E6%96%87%E4%BB%B6.png)
 
