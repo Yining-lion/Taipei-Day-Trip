@@ -23,7 +23,7 @@ Test card：4242-4242-4242-4242 | 12/34 | CVV 123
 
 ## 🔹專案架構圖
 ```
-Taipei-Day-Trip/
+Taipei-Day-Trip
 ├── app.py
 ├── insert_data.py
 │
